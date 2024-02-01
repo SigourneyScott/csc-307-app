@@ -10,15 +10,18 @@ function MyApp() {
       const updated = characters.filter((character, i) => {
         return i !== index;
       });
-      setCharacters(updated);
+      fetch(`Http://localhost:8000/users/${characters.at(index)["id"]}`, {method: 'DELETE'})
+        .then(setCharacters(updated))
+        .catch((error) => { console.log(error); });
     }
 
     function updateList(person) { 
       postUser(person)
-        .then(() => setCharacters([...characters, person]))
+        .then((res) => res.json())
+        .then((json) => setCharacters([...characters, json]))
         .catch((error) => {
           console.log(error);
-        })
+        });
     }
 
     function postUser(person) {
