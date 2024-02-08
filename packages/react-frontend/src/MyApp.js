@@ -10,7 +10,7 @@ function MyApp() {
       const updated = characters.filter((character, i) => {
         return i !== index;
       });
-      fetch(`Http://localhost:8000/users/${characters.at(index)["id"]}`, {method: 'DELETE'})
+      fetch(`Http://localhost:8000/users/${characters.at(index)["_id"]}`, {method: 'DELETE'})
         .then(setCharacters(updated))
         .catch((error) => { console.log(error); });
     }
